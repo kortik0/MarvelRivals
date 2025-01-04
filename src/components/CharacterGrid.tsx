@@ -33,14 +33,9 @@ export function CharacterGrid({ characters, selectedCharacter, onSelect }: Chara
               <div className="absolute inset-0 bg-red-500/20 animate-pulse" />
             )}
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2">
-              <div className="flex flex-col">
-                <span className="text-sm font-semibold text-white truncate">
-                  {character.name}
-                </span>
-                <span className="text-xs text-gray-300 capitalize">
-                  {character.role}
-                </span>
-              </div>
+              <span className="text-sm font-semibold text-white truncate">
+                {character.name}
+              </span>
             </div>
           </div>
         </button>

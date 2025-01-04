@@ -34,17 +34,22 @@ export default function App() {
     let iterations = 0;
     const totalIterations = 5;
     const interval = setInterval(() => {
-      const randomIndex = Math.floor(Math.random() * filteredCharacters.length);
-      setSelectedCharacter(filteredCharacters[randomIndex]);
+      // Filter out the currently selected character to prevent consecutive selections
+      const availableCharacters = filteredCharacters.filter(
+        char => char.id !== selectedCharacter?.id
+      );
+      
+      const randomIndex = Math.floor(Math.random() * availableCharacters.length);
+      setSelectedCharacter(availableCharacters[randomIndex]);
       iterations++;
 
       if (iterations >= totalIterations) {
         clearInterval(interval);
         setIsAnimating(false);
-        handleSelect(filteredCharacters[randomIndex]);
+        handleSelect(availableCharacters[randomIndex]);
       }
     }, 100);
-  }, [isAnimating, handleSelect, filteredCharacters]);
+  }, [isAnimating, handleSelect, filteredCharacters, selectedCharacter]);
 
   const handleClearHistory = useCallback(() => {
     setSelectionHistory([]);
